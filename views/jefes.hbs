@@ -1,0 +1,279 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Las Acacias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Prueba información link-->
+  <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+  <meta property="og:site_name" content="Comunal las Acacias">
+  <meta property="og:title" content="Comunal las Acacias">
+  <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+  <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="locales/bootstrap-datepicker.es.min.js"></script>
+  <link href="css/modal.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-sm hidden-xs">
+            <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+          </li>
+          <li>
+            <a href="/">Inicio</a>
+          </li>{{#if usuario}}
+          <li>
+            <a href="/salir">Salir</a>
+          </li>{{/if}}</ul>
+      </div>
+    </div>
+  </div>
+  <div class="section bg-primary text-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <hr class="azul">
+          <ul class="lead media-list text-left">
+            <li class="media">
+              <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+              <div class="media-body">
+                <h2 class="text-center">{{title}}</h2>
+              </div>
+            </li>
+            <li class="media"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="blanco">
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>CI</th>
+                <th>Edificio</th>
+                <th>Grupo Familiar</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+                <th>Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{#each jefes}}
+              <tr>
+                <td>{{Nombres}}</td>
+                <td>{{Apellidos}}</td>
+                <td>{{Ci_Nac}}-{{Ci}}</td>
+                <td>{{Edificio}}</td>
+                <td>
+                  <form action="listaGrupos" role="form" method="post">
+                    <input type="hidden" name="jefeCI" value="{{Ci}}">
+                    <button type="submit" class="btn btn-sm btn-success">VER &nbsp;FAMILIARES</button>
+                  </form>
+                </td>
+                <td>
+                  <form action="editarJefe" role="form" method="post">
+                    <input type="hidden" name="jefeCI" value="{{Ci}}">
+                    <button type="submit" class="btn btn-primary" title="Modificar">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                      </button>
+                  </form>
+                </td>
+                <td>
+                  <form action="jefeEliminar" role="form" method="post">
+                    <input type="hidden" name="jefeCI" value="{{Ci}}">
+                    <button type="submit" class="btn btn-primary" title="Eliminar">
+                        <i class="glyphicon glyphicon-trash"></i>
+                      </button>
+                  </form>
+                </td>
+                <td>
+                  <a data-toggle="modal" data-ci="{{Ci_Nac}}-{{Ci}}" data-nombres="{{Nombres}}" data-apellidos="{{Apellidos}}" data-sexo="{{Sexo}}" data-estadocivil="{{Estado_civil}}" data-edad="{{Edad}}" data-fecha="{{Fecha_nac}}" data-edificio="{{Edificio}}" class="open-personaDialog btn btn-primary"
+                    data-instruccion="{{Instruccion}}" data-profesion="{{Profesion}}" data-dedicacion="{{Dedicacion}}" data-trabajando="{{Trabajando_actual}}" data-embarazo="{{Embarazo_temp}}" data-cne="{{CNE}}" data-pensionado="{{Pensionado}}" data-discapacitado="{{Discapacitado}}"
+                    data-ingreso="{{Ingreso_mensual}}" data-clasingreso="{{Clasificacion_ingreso}}" title="Ver Detalle" data-target="#personaDialog" href="#personaDialog">
+                    <span class="glyphicon glyphicon-zoom-in"></span>
+                    </a>
+                </td>
+
+                {{/each}}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="personaDialog" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header container col-md-12">
+          <h4 class="modal-title" id="personaModal">Detalle Jefe Familiar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body container col-md-12">
+          <div class="col-md-6 text-left">
+            <h5 id="nombresModal"><b>Nombres:</b></h5>
+            <h5 id="apellidosModal"><b>Apellidos:</b></h5>
+            <h5 id="ciModal"><b>CI:</b></h5>
+            <h5 id="sexoModal"><b>Sexo:</b></h5>
+            <h5 id="estadoModal"></h5>
+            <h5 id="edadModal"></h5>
+            <h5 id="fechaModal"></h5>
+            <h5 id="edificioModal"><b>Nombres:</b></h5>
+            <h5 id="instruccionModal"><b>Apellidos:</b></h5>
+            <h5 id="profesionModal"><b>Sexo:</b></h5>
+            <h5 id="dedicacionModal"></h5>
+            <h5 id="ingresoModal"></h5>
+            <h5 id="clasificacionIngresoModal"></h5>
+          </div>
+          <div class="col-md-6 text-left">
+            <h5><b>Trabajando actualmente:</b><span id="trabajandoModal" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h5>
+            <h5><b>Inscrito en CNE:</b><span id="cneModal" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h5>
+            <h5><b>Pensionado:</b><span id="pensionadoModal" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h5>
+            <h5><b>Discapacitado:</b><span id="discapacitadoModal" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h5>
+            <h5><b>Embarazo Temprano:</b><span id="embarazoModal" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h5>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer container col-md-12">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+  <script>
+    //Dialogo Personas
+    $('#personaDialog').on('show.bs.modal', function(e) {
+      //get data-id attribute of the clicked element
+      var ci = $(e.relatedTarget).data('ci');
+      var nombres = $(e.relatedTarget).data('nombres');
+      var apellidos = $(e.relatedTarget).data('apellidos');
+      var sexo = $(e.relatedTarget).data('sexo');
+      var estadocivil = $(e.relatedTarget).data('estadocivil');
+      var edad = $(e.relatedTarget).data('edad');
+      var fecha = $(e.relatedTarget).data('fecha');
+      var edificio = $(e.relatedTarget).data('edificio');
+      var instruccion = $(e.relatedTarget).data('instruccion');
+      var profesion = $(e.relatedTarget).data('profesion');
+      var dedicacion = $(e.relatedTarget).data('dedicacion');
+      var trabajando = $(e.relatedTarget).data('trabajando');
+      var embarazo = $(e.relatedTarget).data('embarazo');
+      var cne = $(e.relatedTarget).data('cne');
+      var pensionado = $(e.relatedTarget).data('pensionado');
+      var discapacitado = $(e.relatedTarget).data('discapacitado');
+      var ingreso = $(e.relatedTarget).data('ingreso');
+      var clasingreso = $(e.relatedTarget).data('clasingreso');
+      //Vemos Checks
+      if (trabajando == "1") {
+        document.getElementById('trabajandoModal').className = 'glyphicon glyphicon-ok-circle gi-2x';
+      }
+      else {
+        document.getElementById('trabajandoModal').className = 'glyphicon glyphicon-remove-circle gi-2x';
+      }
+
+      if (embarazo == "1") {
+        document.getElementById('embarazoModal').className = 'glyphicon glyphicon-ok-circle gi-2x';
+      }
+      else {
+        document.getElementById('embarazoModal').className = 'glyphicon glyphicon-remove-circle gi-2x';
+      }
+
+      if (pensionado == "1") {
+        document.getElementById('pensionadoModal').className = 'glyphicon glyphicon-ok-circle gi-2x';
+      }
+      else {
+        document.getElementById('pensionadoModal').className = 'glyphicon glyphicon-remove-circle gi-2x';
+      }
+
+      if (cne == "1") {
+        document.getElementById('cneModal').className = 'glyphicon glyphicon-ok-circle gi-2x';
+      }
+      else {
+        document.getElementById('cneModal').className = 'glyphicon glyphicon-remove-circle gi-2x';
+      }
+
+      if (discapacitado == "1") {
+        document.getElementById('discapacitadoModal').className = 'glyphicon glyphicon-ok-circle gi-2x';
+      }
+      else {
+        document.getElementById('discapacitadoModal').className = 'glyphicon glyphicon-remove-circle gi-2x';
+      }
+
+      if (sexo == "M") {
+        sexo = "Hombre";
+      }
+      else {
+        sexo = "Mujer";
+      }
+
+
+
+      var nombresModal = "<b>Nombres:</b> " + nombres;
+      var apellidosModal = "<b>Apellidos:</b> " + apellidos;
+      var ciModal = "<b>CI:</b> " + ci;
+      var sexoModal = "<b>Sexo:</b> " + sexo;
+      var estadoModal = "<b>Estado Civil:</b> " + estadocivil;
+      var edadModal = "<b>Edad:</b> " + edad;
+      var fechaModal = "<b>Fecha de Nacimiento:</b> " + fecha;
+      var edificioModal = "<b>Edificio:</b> " + edificio;
+      var instruccionModal = "<b>Instrucción:</b> " + instruccion;
+      var profesionModal = "<b>Profesión:</b> " + profesion;
+      var dedicacionModal = "<b>Dedicación:</b> " + dedicacion;
+      var ingresesoModal = "<b>Ingreso Mensual:</b> " + ingreso;
+      var clasificacionIngresoModal = "<b>Tipo Ingreso:</b> " + clasingreso;
+
+      //Llenamos con datos persona
+      document.getElementById('nombresModal').innerHTML = nombresModal;
+      document.getElementById('apellidosModal').innerHTML = apellidosModal;
+      document.getElementById('ciModal').innerHTML = ciModal;
+      document.getElementById('sexoModal').innerHTML = sexoModal;
+      document.getElementById('estadoModal').innerHTML = estadoModal;
+      document.getElementById('fechaModal').innerHTML = fechaModal;
+      document.getElementById('edadModal').innerHTML = edadModal;
+      document.getElementById('edificioModal').innerHTML = edificioModal;
+      document.getElementById('instruccionModal').innerHTML = instruccionModal;
+      document.getElementById('profesionModal').innerHTML = profesionModal;
+      document.getElementById('dedicacionModal').innerHTML = dedicacionModal;
+      document.getElementById('ingresoModal').innerHTML = ingresesoModal;
+      document.getElementById('clasificacionIngresoModal').innerHTML = clasificacionIngresoModal;
+    });
+  </script>
+
+
+</body>
+
+</html>

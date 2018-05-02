@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Las Acacias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Prueba información link-->
+    <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+    <meta property="og:site_name" content="Comunal las Acacias">
+    <meta property="og:title" content="Comunal las Acacias">
+    <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+    <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden-sm hidden-xs">
+                        <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+                    </li>
+                    <li>
+                        <a href="/">Inicio</a>
+                    </li>{{#if usuario}}
+                    <li>
+                        <a href="/salir">Salir</a>
+                    </li>
+                    {{else}}
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/registro">Registro</a>
+                    </li>
+                    {{/if}}</ul>
+            </div>
+        </div>
+    </div>
+   <div class="section bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <hr class="azul">
+                <div class="col-md-12">
+                    <ul class="media-list">
+                        <li class="media">
+                            <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+                            <div class="media-body">
+                                <h2 class="text-center">{{titulo}}</h2>
+                            </div>
+                        </li>
+                        <li class="media"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="blanco">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="thumbnail">
+                        <img src="error.png" class="img-responsive" height="120" width="120">
+                        <div class="caption">
+                            <h1 class="text-center">{{error}}</h1>
+                            <div class="col-md-12 text-center">
+                                <a href="/" class="btn btn-primary" role="button">Regresar Página Principal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h1 class="text-center"></h1>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12 text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

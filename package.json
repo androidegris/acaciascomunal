@@ -1,0 +1,24 @@
+{
+  "name": "acaciascomunal",
+  "version": "1.0.0",
+  "description": "Consejo comunal las acacias",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "^2.3.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.0",
+    "express": "^4.15.0",
+    "express-session": "^1.15.1",
+    "hbs": "^4.0.1",
+    "request": "^2.79.0",
+    "serve-favicon": "^2.5.0",
+    "sqlite": "^2.5.0",
+    "svg-captcha": "^1.3.11"
+  },
+  "author": "androiderex",
+  "license": "ISC"
+}

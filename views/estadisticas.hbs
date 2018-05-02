@@ -1,0 +1,302 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Las Acacias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Prueba información link-->
+  <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+  <meta property="og:site_name" content="Comunal las Acacias">
+  <meta property="og:title" content="Comunal las Acacias">
+  <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+  <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-sm hidden-xs">
+            <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+          </li>
+          <li>
+            <a href="/">Inicio</a>
+          </li>{{#if usuario}}
+          <li>
+            <a href="/salir">Salir</a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/login">Login</a>
+          </li>
+          <li>
+            <a href="/registro">Registro</a>
+          </li>
+          {{/if}}</ul>
+      </div>
+    </div>
+  </div>
+  <div class="section bg-primary text-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <hr class="azul">
+          <ul class="lead media-list text-left">
+            <li class="media">
+              <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+              <div class="media-body">
+                <h2 class="text-center">Estadísticas</h2>
+              </div>
+            </li>
+            <li class="media"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="blanco">
+  <h4 class="text-center"><b>Datos Generales</b></h4>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr class="bg-danger">
+                <th>Habitantes</th>
+                <th>Familias</th>
+                <th>Viviendas</th>
+                <th>Hombres</th>
+                <th>Mujeres</th>
+                <th>0-14 años</th>
+                <th>15-17 años</th>
+                <th>Más 18 años</th>
+                <th>CNE</th>
+                <th>Electores</th>
+              </tr>
+              <tbody>
+                <tr>
+                  <td>{{num.personas}}</td>
+                  <td>{{num.familias}}</td>
+                  <td>{{num.edificios}}</td>
+                  <td>{{num.hombres}}</td>
+                  <td>{{num.mujeres}}</td>
+                  <td>{{num.menores_15}}</td>
+                  <td>{{num.de_15_17}}</td>
+                  <td>{{num.mayores}}</td>
+                  <td>{{num.cne}}</td>
+                  <td>{{electores}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+     <hr class="blanco">
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr class="bg-danger">
+                  <th>Nivel de Instrucción</th>
+                </tr>
+                <tr>
+                  <td>Sin Instrucción</td>
+                  <td>{{num.sin_instruccion}}</td>
+                </tr>
+                <tr>
+                  <td>Básica</td>
+                  <td>{{num.basica}}</td>
+                </tr>
+                <tr>
+                  <td>Bachiller</td>
+                  <td>{{num.bachiller}}</td>
+                </tr>
+                <tr>
+                  <td>Técnico Medio</td>
+                  <td>{{num.tec_medio}}</td>
+                </tr>
+                <tr>
+                  <td>Técnico Superior</td>
+                  <td>{{num.tec_superior}}</td>
+                </tr>
+                <tr>
+                  <td>Universitario</td>
+                  <td>{{num.universitario}}</td>
+                </tr>
+                <tr>
+                  <td>Postgrado</td>
+                  <td>{{num.postgrado}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr class="bg-danger">
+                    <th>Tenencia Vivienda</th>
+                  </tr>
+                  <tr>
+                    <td>Propia</td>
+                    <td>{{num.propia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Alquilada</td>
+                    <td>{{num.alquilada}}</td>
+                  </tr>
+                  <tr>
+                    <td>Traspaso</td>
+                    <td>{{num.traspaso}}</td>
+                  </tr>
+                  <tr>
+                    <td>Invadida</td>
+                    <td>{{num.invadida}}</td>
+                  </tr>
+                  <tr>
+                    <td>Pagándose</td>
+                    <td>{{num.pagandose}}</td>
+                  </tr>
+                  <tr>
+                    <td>Otra</td>
+                    <td>{{num.otra}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+     <hr class="blanco">
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr class="bg-danger">
+                  <th>Nivel de Desarrollo</th>
+                </tr>
+                <tr>
+                  <td>Lactancia</td>
+                  <td>
+                    < 1 año</td>
+                      <td>{{num.lactancia}}</td>
+                </tr>
+                <tr>
+                  <td>Preescolar</td>
+                  <td>1 a 4 años</td>
+                  <td>{{num.preescolar}}</td>
+                </tr>
+                <tr>
+                  <td>Escolar</td>
+                  <td>5 a 9 años</td>
+                  <td>{{num.escolar}}</td>
+                </tr>
+                <tr>
+                  <td>Adolescente</td>
+                  <td>10 a 14 años</td>
+                  <td>{{num.adolescente}}</td>
+                </tr>
+                <tr>
+                  <td>Adolescente</td>
+                  <td>15 a 19 años</td>
+                  <td>{{num.adolescentes}}</td>
+                </tr>
+                <tr>
+                  <td>Adulto Joven</td>
+                  <td>20 a 34 años</td>
+                  <td>{{num.adultojoven}}</td>
+                </tr>
+                <tr>
+                  <td>Adulto Joven</td>
+                  <td>35 a 49 años</td>
+                  <td>{{num.adultojoven2}}</td>
+                </tr>
+                <tr>
+                  <td>Adulto Maduro</td>
+                  <td>50 a 59 años</td>
+                  <td>{{num.adultomaduro}}</td>
+                </tr>
+                <tr>
+                  <td>Adulto Mayor</td>
+                  <td>> 60 años</td>
+                  <td>{{num.adultomayor}}</td>
+                </tr>
+                <tr>
+                  <td>No señalada</td>
+                  <td>N/A</td>
+                  <td>{{num.sinedad}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr class="bg-danger">
+                    <th>Otros Datos</th>
+                  </tr>
+                  <tr>
+                    <td>Pensionados</td>
+                    <td>{{num.pensionados}}</td>
+                  </tr>
+                  <tr>
+                    <td>Discapacitados</td>
+                    <td>{{num.discapacitados}}</td>
+                  </tr>
+                  <tr>
+                    <td>Embarazos tempranos</td>
+                    <td>{{num.embarazo_temp}}</td>
+                  </tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="col-md-12">
+    <hr>
+  </div>
+</body>
+
+</html>

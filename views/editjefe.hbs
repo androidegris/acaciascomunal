@@ -1,0 +1,383 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Las Acacias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Prueba información link-->
+    <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+    <meta property="og:site_name" content="Comunal las Acacias">
+    <meta property="og:title" content="Comunal las Acacias">
+    <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+    <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="locales/bootstrap-datepicker.es.min.js"></script>
+    <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden-sm hidden-xs">
+                        <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+                    </li>
+                    <li>
+                        <a href="/">Inicio</a>
+                    </li>{{#if usuario}}
+                    <li>
+                        <a href="/salir">Salir</a>
+                    </li>{{/if}}</ul>
+            </div>
+        </div>
+    </div>
+    <div class="section bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <hr class="azul">
+                <div class="col-md-12">
+                    <ul class="media-list">
+                        <li class="media">
+                            <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+                            <div class="media-body">
+                                <h2 class="text-center">{{title}}</h2>
+                            </div>
+                        </li>
+                        <li class="media"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="blanco">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal" role="form" action="jefeCreado" method="post">
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Nombres</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Nombres" name="nombres" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Apellidos</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">CI</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" placeholder="CI" name="ci" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="ci_nac">
+                                          <option value='V' selected>V</option>
+                                          <option value='E'>E</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Sexo</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control" name="sexo">
+                                          <option value='M' selected>Hombre</option>
+                                          <option value='F'>Mujer</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Estado Civil</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="estado_civil">
+                                          <option selected>soltero(a)</option>
+                                          <option >casado(a)</option>
+                                          <option >divorciado(a)</option>
+                                          <option >viudo(a)</option>
+                                          <option >concubino(a)</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Edad</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" placeholder="Edad" name="edad">
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="control-label">Fecha Nacimiento</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <div id="sandbox-container">
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="fecha" placeholder="dd/mm/aaaa">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-calendar fa-fw fa-lg"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tlf Habitación</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Introduzca número de Tlf" size="20" minlength="9" maxlength="20" name="Telefono_Hab">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tlf Celular</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Introduzca número de Tlf" size="20" minlength="9" maxlength="20" name="Telefono_Cel">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tlf Oficina</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Introduzca número de Tlf" size="20" minlength="9" maxlength="20" name="Telefono_Ofic">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Email</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" placeholder="Email" name="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Dirección</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="exampleTextarea" rows="2" name="Direccion" title="Piso/Apt"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Edificio</label>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <select class="form-control" name="Edificio">
+                                    {{#if crear}}
+                                    <option disabled selected value> Seleccione Edificio</option>
+                                    {{#each edificios}}
+                                    <option>{{nombre_edificio}}</option>
+                                    {{/each}}
+                                    {{else}}
+                                    <option selected>{{edificioSelect}}</option>
+                                    {{/if}}
+                                    </select>
+                            </div>
+                            <a class="btn btn-sm btn-primary text-left" href="agregarEdificio">Agregar Edificio</a>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tenencia Vivienda</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="Tenencia_vivienda">
+                                          <option selected>Propia</option>
+                                          <option >Alquilada</option>
+                                          <option >Traspaso</option>
+                                          <option >Invadida</option>
+                                          <option >Pagándose</option>
+                                          <option >Otra</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tiempo Comunidad</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Tiempo que lleva en la comunidad" name="Tiempo_comunidad">
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Nivel Instrucción</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="Instruccion">
+                                          <option selected>Sin Instrucción</option>
+                                          <option >Basica</option>
+                                          <option >Bachiller</option>
+                                          <option >Tecnico Medio</option>
+                                          <option >Tecnico Superior</option>
+                                          <option >Universitario</option>
+                                          <option >Post Grado</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Profesión</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Profesión" name="Profesion">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Dedicación</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Indique a que se dedica" name="Dedicacion">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="Trabajando_actual">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Trabaja actualmente</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="Embarazo_temp">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Embarazo temprano</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="CNE">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Inscrito CNE</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="Pensionado">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Pensionado</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Inst. Pensión</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Institución Pensión" name="Pension_institucion">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="Discapacitado">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Discapacitado</span>
+                                        </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Tipo Discapacidad</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Discapacidad" name="Tipo_discapacidad">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Ingreso Mensual</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" name="Ingreso_mensual">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <label class="control-label">Clasificación Ingreso</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="Clasificacion_ingreso">
+                                          <option >Diario</option>
+                                          <option >Semanal</option>
+                                          <option selected>Quincenal</option>
+                                          <option >Mensual</option>
+                                          <option >Por trabajo realizado</option>
+                                        </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">{{#unless crear}}
+                                <input type="hidden" name="fechaAnterior" value="{{fecha}}">{{/unless}}
+                                <input type="hidden" name="enSesion" value="enSesion">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary" name="Enviar" value="funcion">{{tarea}}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $('#sandbox-container .input-group.date').datepicker({
+            format: "dd/mm/yyyy",
+            language: "es",
+            autoclose: true,
+            toggleActive: true
+        });
+    </script>
+
+</body>
+
+</html>

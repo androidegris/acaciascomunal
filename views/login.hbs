@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Las Acacias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Prueba información link-->
+  <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+  <meta property="og:site_name" content="Comunal las Acacias">
+  <meta property="og:title" content="Comunal las Acacias">
+  <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+  <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-sm hidden-xs">
+            <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+          </li>
+          <li>
+            <a href="/">Inicio</a>
+          </li>{{#if usuario}}
+          <li>
+            <a href="/salir">Salir</a>
+          </li>{{/if}}</ul>
+      </div>
+    </div>
+  </div>
+ <div class="section bg-primary text-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <hr class="azul">
+          <ul class="lead media-list text-left">
+            <li class="media">
+              <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+              <div class="media-body">
+                <h2 class="text-center">{{title}}</h2>
+              </div>
+            </li>
+            <li class="media"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="blanco">
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+              </div>
+              <div class="panel-body">
+                <form role="form" action="login" method="post">
+                  <div class="form-group">
+                    <label class="control-label" for="inputUser">Usuario</label>
+                    <input class="form-control" id="inputUser" placeholder="Ingrese usuario" type="text" name="user" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="password">Password</label>
+                    <input class="form-control" id="password" placeholder="Ingrese contraseña" type="password" name="clave" required>
+                  </div>
+                  <button type="submit" class="btn btn-lg btn-primary" onclick="cifrar()">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+
+
+<!-- Cifrado Contraseña -->
+<script src="js/md5.js"></script>
+<script>
+  function noVacio(entrada) {
+    if (entrada.value.length == 0) {
+      return false;
+    }
+    return true;
+  }
+
+  function cifrar() {
+    var input_pass = document.getElementById("password");
+    var username = document.getElementById("inputUser");
+
+    //Chequeamos username, captcha y password
+    if (noVacio(username) && noVacio(input_pass)) {
+      console.log('valido');
+      input_pass.removeAttribute("pattern");
+      console.log(input_pass);
+      input_pass.value = CryptoJS.MD5(input_pass.value);
+      console.log(input_pass.value);
+    }
+    else {
+      console.log('invalido');
+
+    }
+  }
+</script>
+
+
+
+
+</body>
+
+</html>

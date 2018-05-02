@@ -1,0 +1,97 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Controles HLS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/"><span>CONTROLES HLS</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-sm hidden-xs">
+            <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+          </li>
+          <li>
+            <a href="/">Inicio</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section bg-primary text-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <hr class="azul">
+          <ul class="lead media-list text-left">
+            <li class="media">
+              <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+              <div class="media-body">
+                <h2 class="text-center">{{titulo}}</h2>
+              </div>
+            </li>
+            <li class="media"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="blanco">
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">{{msj}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h1 class="text-center"></h1>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          {{#if actividades}}
+          <form action="editarActividad" role="form" method="post">
+            <input type="hidden" name="asesor" value="{{asesor}}">
+            <input type="hidden" name="cliente" value="{{cliente}}">
+            <input type="hidden" name="fecha" value="{{fecha}}">
+            <button type="submit" class="btn btn-info">Mis Actividades</button>
+          </form>
+          {{/if}} {{#if reportes}}
+          <form action="subirReportesAsesor" role="form" method="post">
+            <input type="hidden" name="asesor" value="enSesion">
+            <button type="submit" class="btn btn-info">Mis Reportes</button>
+          </form>
+          {{/if}}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

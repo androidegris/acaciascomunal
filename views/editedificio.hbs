@@ -1,0 +1,115 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Las Acacias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Prueba información link-->
+  <meta property="og:url" content="https://mispeliculas.herokuapp.com">
+  <meta property="og:site_name" content="Comunal las Acacias">
+  <meta property="og:title" content="Comunal las Acacias">
+  <meta name="description" content="Comunal las Acacias" <meta="" property="og:description">
+  <meta property="og:image" content="https://mispeliculas.herokuapp.com/img/logo2.png">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="locales/bootstrap-datepicker.es.min.js"></script>
+  <link rel="stylesheet" href="css/acacias.css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="/"><span>Las Acacias</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden-sm hidden-xs">
+            <a href="/"><img src="home.png" alt="Inicio" width="25" height="25"></a>
+          </li>
+          <li>
+            <a href="/">Inicio</a>
+          </li>{{#if usuario}}
+          <li>
+            <a href="/salir">Salir</a>
+          </li>{{/if}}</ul>
+      </div>
+    </div>
+  </div>
+  <div class="section bg-primary text-center">
+    <div class="container">
+      <div class="row">
+        <hr class="azul">
+        <div class="col-md-12">
+          <ul class="media-list">
+            <li class="media">
+              <a class="pull-left" href="/"><img class="img-circle media-object" src="logolarge.jpg" height="120" width="120"></a>
+              <div class="media-body">
+                <h2 class="text-center">{{title}}</h2>
+              </div>
+            </li>
+            <li class="media"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="blanco">
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-horizontal" role="form" action="edificioCreado" method="post">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Nombre</label>
+              </div>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Dirección</label>
+              </div>
+              <div class="col-sm-8">
+                <textarea class="form-control" id="exampleTextarea" rows="2" name="direccion"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">{{#unless crear}}
+                <input type="hidden" name="fechaAnterior" value="{{fecha}}">{{/unless}}
+                <input type="hidden" name="enSesion" value="enSesion">
+                <button type="submit" class="btn btn-block btn-lg btn-primary" name="Enviar" value="funcion">{{tarea}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <script type="text/javascript">
+    $('#sandbox-container .input-group.date').datepicker({
+      format: "dd/mm/yyyy",
+      language: "es",
+      autoclose: true,
+      toggleActive: true
+    });
+  </script>
+
+</body>
+
+</html>
